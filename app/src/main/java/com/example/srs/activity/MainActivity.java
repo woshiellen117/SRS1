@@ -24,6 +24,7 @@ import com.example.srs.database.UserDataBase;
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.srs.MESSAGE";
+    public static int register_answer_question=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,15 +33,14 @@ public class MainActivity extends AppCompatActivity {
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
 
-        String register_answer_question;
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int pos, long id) {
 
-                String[] languages = getResources().getStringArray(R.array.a);
-                String register_answer_question;
-                register_answer_question=languages[pos];
+                String[] questions = getResources().getStringArray(R.array.a);
+//                String register_answer_question;
+                register_answer_question =pos;
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                         showtext.setText("Password should contain both digits and characters\n");
                     }
                     else
-                        showtext.setText("\n");
+                        showtext.setText(Integer.toString(register_answer_question));
                 }
 
 //                refresh();
