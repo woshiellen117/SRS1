@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="a">
+        <item>What is your fathers name?</item>
+        <item>Where are your best friend living?</item>
+        <item>What is your favorite book?</item>
+        <item>What is your favorite movie?</item>
+        <item>What is your current address?</item>
+    </string-array>
+</resources>
