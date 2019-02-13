@@ -10,10 +10,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.srs.HomePageActivity;
+//import com.example.srs.HomePageActivity;
 import com.example.srs.R;
 import com.example.srs.database.UserDataBase;
 
@@ -25,8 +28,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        UserDataBase db = Room.databaseBuilder(getApplicationContext(),
-                UserDataBase.class, "database-name").build();
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        final String[] questions = {"魯肉飯", "控肉飯", "雞排飯", "炸醬麵", "水餃"};
+        ArrayAdapter<String> questionList = new ArrayAdapter<>(MainActivity.this,
+                android.R.layout.simple_spinner_dropdown_item,
+                questions);spinner.setAdapter(questionList);
+
+//        UserDataBase db = Room.databaseBuilder(getApplicationContext(),
+//                UserDataBase.class, "database-name").build();
 
 
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
@@ -50,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 editText = findViewById(R.id.editText7);
                 String register_phone_num = editText.getText().toString();
 
-                editText = findViewById(R.id.editText8);
-                String register_secur_question = editText.getText().toString();
+//                editText = findViewById(R.id.editText8);
+//                String register_secur_question = editText.getText().toString();
 
                 editText = findViewById(R.id.editText9);
                 String register_answer = editText.getText().toString();
@@ -67,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 {
                     showtext.setText("The two passwords not match!\n");
                 }
-                else if(register_age.equals("")||register_name.equals("")||register_username.equals("")||register_gender.equals("")||register_phone_num.equals("")||register_secur_question.equals("")||register_password.equals("")||register_confirm_password.equals("")||register_answer.equals(""))
+                else if(register_age.equals("")||register_name.equals("")||register_username.equals("")||register_gender.equals("")||register_phone_num.equals("")||register_password.equals("")||register_confirm_password.equals("")||register_answer.equals(""))
                 {
                     showtext.setText("Please enter all blank fields!\n");
                 }
