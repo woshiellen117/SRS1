@@ -215,10 +215,11 @@
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="290dp"
-        android:layout_height="35dp"
+        android:layout_height="38dp"
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="15dp"
+        android:entries="@array/a"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText7" />
 
