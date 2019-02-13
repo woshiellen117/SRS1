@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -28,15 +29,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        final String[] questions = {"魯肉飯", "控肉飯", "雞排飯", "炸醬麵", "水餃"};
-        ArrayAdapter<String> questionList = new ArrayAdapter<>(MainActivity.this,
-                android.R.layout.simple_spinner_dropdown_item,
-                questions);spinner.setAdapter(questionList);
+        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
-//        UserDataBase db = Room.databaseBuilder(getApplicationContext(),
-//                UserDataBase.class, "database-name").build();
 
+        String register_answer_question;
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+
+                String[] languages = getResources().getStringArray(R.array.a);
+                String register_answer_question;
+                register_answer_question=languages[pos];
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Another interface callback
+            }
+        });
 
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
 
@@ -59,8 +69,6 @@ public class MainActivity extends AppCompatActivity {
                 editText = findViewById(R.id.editText7);
                 String register_phone_num = editText.getText().toString();
 
-//                editText = findViewById(R.id.editText8);
-//                String register_secur_question = editText.getText().toString();
 
                 editText = findViewById(R.id.editText9);
                 String register_answer = editText.getText().toString();
@@ -71,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 editText = findViewById(R.id.editText12);
                 String register_confirm_password = editText.getText().toString();
 
+
                 TextView showtext = findViewById(R.id.textView4);
                 if(!register_confirm_password.equals(register_password))
                 {
@@ -80,9 +89,31 @@ public class MainActivity extends AppCompatActivity {
                 {
                     showtext.setText("Please enter all blank fields!\n");
                 }
+                else if(register_password.length()<8)
+                {
+                    showtext.setText("The length of password should be more than 8 character!\n");
+                }
                 else
                 {
-                    showtext.setText("\n");
+                    int flag_int=0;
+                    int flag_char=0;
+                    for(int i=0;i<register_password.length();i++)
+                    {
+                        if(register_password.charAt(i)<'9'&&register_password.charAt(i)>'0')
+                        {
+                            flag_int=1;
+                        }
+                        else if(register_password.charAt(i)<'z'&&register_password.charAt(i)>'a'||register_password.charAt(i)<'Z'&&register_password.charAt(i)>'A')
+                        {
+                            flag_char=1;
+                        }
+                    }
+                    if(!(flag_char==1&&flag_int==1))
+                    {
+                        showtext.setText("Password should contain both digits and characters\n");
+                    }
+                    else
+                        showtext.setText("\n");
                 }
 
 //                refresh();
