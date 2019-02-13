@@ -12,4 +12,5 @@
     <string name="register_answer">Answer</string>
     <string name="register_phone_num">Phone Number</string>
     <string name="home_page_view">Enter here</string>
+    <string name="insertData">insert into user (username,password,name,gender,age,phone_number,question_id,answer) values (?,?,?,?,?,?,?,?)</string>
 </resources>

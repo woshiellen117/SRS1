@@ -154,21 +154,10 @@ public class RegisterActivity extends AppCompatActivity {
     public void sendMessage(View view) {
         // Do something in response to button
 
-
-        EditText editText = findViewById(R.id.editText10);
-        String register_password = editText.getText().toString();
-
-        editText = findViewById(R.id.editText12);
-        String register_confirm_password = editText.getText().toString();
-
-        if(!register_confirm_password.equals(register_password))
-        {
-            Intent intent = new Intent(this, RegisterActivity.class);
-            TextView textView = findViewById(R.id.textView4);
-            String message = textView.getText().toString();
-            intent.putExtra(EXTRA_MESSAGE, message);
-            startActivity(intent);
-        }
+        Intent intent = new Intent(this, MainActivity.class);
+        String message="Register success!";
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
 
 //        TextView editText = findViewById(R.id.textView4);
 //        String message = editText.getText().toString();
