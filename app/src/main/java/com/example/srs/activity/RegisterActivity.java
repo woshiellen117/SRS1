@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 String[] questions = getResources().getStringArray(R.array.a);
 //                String register_answer_question;
-                register_answer_question =pos;
+                register_answer_question =pos+1;
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -97,7 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else if(register_password.length()<8)
                 {
-                    showtext.setText("The length of password should be more than 8 character!\n");
+                    showtext.setText("The length of password should be more than 8!\n");
                 }
                 else
                 {
@@ -122,20 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
                     {
                         db.execSQL(getString(R.string.insertData), new String[]{register_username, register_password, register_name,register_gender, register_age, register_phone_num,Integer.toString(register_answer_question),register_answer});
                         showtext.setText("db\n");
-                        Cursor cursor = db.query("user", null, null, null, null, null, null);
-                        if (cursor.moveToFirst()) {
-                            do {
-                                //遍历Cursor对象
-                                String username = cursor.getString(cursor.getColumnIndex("username"));
-                                String password = cursor.getString(cursor.getColumnIndex("password"));
-//                        int pages = cursor.getInt(cursor.getColumnIndex("pages"));
-//                        double price = cursor.getDouble(cursor.getColumnIndex("price"));
-
-                                String result = "The user is" + username + "and password is " + password;
-                                Toast.makeText(RegisterActivity.this, result, Toast.LENGTH_SHORT).show();
-                            } while (cursor.moveToNext());
-                        }
-                        cursor.close();
+                        refresh();
 
                     }
 
@@ -170,7 +157,7 @@ public class RegisterActivity extends AppCompatActivity {
      */
     private void refresh() {
         finish();
-        Intent intent = new Intent(RegisterActivity.this, RegisterActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
@@ -185,8 +172,8 @@ public class RegisterActivity extends AppCompatActivity {
             do {
                 //遍历Cursor对象
                 String findusername = cursor.getString(cursor.getColumnIndex("username"));
-                String result = "The user is " + findusername ;
-                Toast.makeText(RegisterActivity.this, result, Toast.LENGTH_SHORT).show();
+//                String result = "The user is " + findusername ;
+//                Toast.makeText(RegisterActivity.this, result, Toast.LENGTH_SHORT).show();
                 if(findusername.equals(username))
                     return true;
             } while (cursor.moveToNext());
